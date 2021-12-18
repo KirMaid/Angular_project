@@ -1,0 +1,25 @@
+<router-outlet>
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="Enter item name" [(ngModel)]="text" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="addItem(text)">Add</button>
+    </ng-template>
+
+    <nz-list nzItemLayout="horizontal">
+        <nz-list-header>
+            <div nz-row>
+                <div nz-col nzSpan="12"><a (click)="SortName()">Name</a></div>
+                <div nz-col nzSpan="12"><a (click)="SortDate()">Date</a></div>
+            </div>
+        </nz-list-header>
+        <nz-list-item *ngFor="let item of items;let i = index" nz-row>
+            <div nz-col nzSpan="12"><span>{{item.name}}</span></div>
+            <div nz-col nzSpan="11"><span>{{item.date}}</span></div>
+            <div nz-col nzSpan="1">
+                <i nz-icon nzType="copy" (click)="copyItem(item)" nzTheme="outline" style="font-size: 20px;"></i>
+                <i nz-icon nzType="delete" (click)="deleteItem(i)" nzTheme="outline" style="font-size: 20px;"></i>
+            </div>
+        </nz-list-item>
+    </nz-list>
+</router-outlet>
